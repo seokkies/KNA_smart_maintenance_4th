@@ -34,3 +34,4 @@ def sensor_stats(values):
 sensors = [78, 92, 85, 86, 84]
 minimum, maximum, average = sensor_stats(sensors)
 print(minimum, maximum, average)
+
