@@ -21,5 +21,5 @@ print(df.shape) # (200,7)로 열 분류 완료
 #실습 4
 df = pd.read_csv("data/12_metro_compressor_semicolon.csv",sep=";",encoding="utf-8")
 df1 = df[["측정시각", "오일온도", "모터전류"]].head(50)
-print(df1)
+print(df1.head(5))
 print("df1 줄 수:", df1.shape)
