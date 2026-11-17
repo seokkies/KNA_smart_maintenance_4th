@@ -87,3 +87,29 @@ summary = pd.DataFrame({
 }).T
 
 print(summary)
+print()
+
+#실습 5
+from pathlib import Path
+import pandas as pd
+
+ROOT = Path(__file__).resolve().parent
+PROC = ROOT / 'data' / '15_사출성형_공정.csv'
+
+df = pd.read_csv(PROC)
+mask = df["최대사출압"].isna()
+print("원래 결측 수:", mask.sum())
+mean_value = df["최대사출압"].mean()
+median_value = df["최대사출압"].median()
+print("평균:", round(mean_value, 2))
+print("중앙값:", round(median_value, 2))
+mean_df = df.copy()
+mean_df["최대사출압"] = mean_df["최대사출압"].fillna(mean_value)
+median_df = df.copy()
+median_df["최대사출압"] = median_df["최대사출압"].fillna(median_value)
+print("평균 대체 후 결측:", mean_df["최대사출압"].isna().sum())
+print("평균 대체값:")
+print(mean_df.loc[mask, "최대사출압"].head(3).tolist())
+print("중앙값 대체값:")
+print(median_df.loc[mask, "최대사출압"].head(3).tolist())
+print("관측값 유지:", mean_df.loc[~mask, "최대사출압"].equals(df.loc[~mask, "최대사출압"]))
